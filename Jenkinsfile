@@ -9,23 +9,23 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        bat 'docker build -t lwsdnh/dp-alpine:latest .'
+        sh 'docker build -t lwsdnh/dp-alpine:latest .'
       }
     }
     stage('Login') {
       steps {
-        bat 'echo %DOCKERHUB_CREDENTIALS_PSW | docker login -u %DOCKERHUB_CREDENTIALS_USR --password-stdin https://index.docker.io/v1/'
+        sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
       }
     }
     stage('Push') {
       steps {
-        bat 'docker push lwsdnh/dp-alpine:latest'
+        sh 'docker push lwsdnh/dp-alpine:latest'
       }
     }
   }
   post {
     always {
-      bat 'docker logout'
+      sh 'docker logout'
     }
   }
 }

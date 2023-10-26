@@ -14,7 +14,7 @@ pipeline {
     }
     stage('Login') {
       steps {
-        docker login
+        bat 'docker login'
       }
     }
     stage('Push') {

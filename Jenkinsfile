@@ -14,7 +14,7 @@ pipeline {
     }
     stage('Login') {
       steps {
-        bat 'echo dckr_pat__D9iEXT8jgxSmwURgdKTie5Ee3E | docker login -u lwsdnh --password-stdin'
+        docker login
       }
     }
     stage('Push') {
